@@ -30,13 +30,15 @@ public class GridSystem
         }
     }
 
-    public void CreateDebugObjcet(Transform debugPrefab)
+    public void CreateDebugObjcet(Transform debugPrefab, Transform container)
     {
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
                 Transform debugTransform = Transform.Instantiate(debugPrefab, GetWorldPosition(x, y), Quaternion.identity);
+                debugTransform.SetParent(container);
+
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
                 gridDebugObject.SetGridObject(GetGridObject(new GridPosition(x, y)));
             }
