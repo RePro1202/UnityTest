@@ -7,15 +7,10 @@ public class Unit : MonoBehaviour
 {
     private GridPosition gridPosition;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
-        LevelGrid.Instance.SetUnitAtGridPosition(gridPosition, this);
+        LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
     }
 
     private void Update()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
@@ -8,14 +9,15 @@ public class GridSystem
 {
     private int width;
     private int height;
-    private float cellSize;
     private GridObject[,] gridObjectArray;
 
-    public GridSystem(int width, int height, float cellSize)
+    private GridObject OutOfGrid;
+
+    public GridSystem(int width, int height)
     {
         this.width = width;
         this.height = height;
-        this.cellSize = cellSize;
+        OutOfGrid = new GridObject(this, new GridPosition(-1, -1));
 
         gridObjectArray = new GridObject[width, height];
 
@@ -43,17 +45,27 @@ public class GridSystem
 
     public Vector3 GetWorldPosition(int x, int y)
     {
-        return new Vector3(x, y, 0) * cellSize;
+        return new Vector3(x, y, 0);
+    }
+
+    public Vector3 GetWorldPosition(GridPosition gridPosition)
+    {
+        return GetWorldPosition(gridPosition.x, gridPosition.y);
     }
 
     public GridPosition GetGridPosition(Vector3 worldPosition)
     {
-        return new GridPosition(Mathf.RoundToInt(worldPosition.x / cellSize), Mathf.RoundToInt(worldPosition.y / cellSize));
+        return new GridPosition(Mathf.RoundToInt(worldPosition.x), Mathf.RoundToInt(worldPosition.y));
     }
 
-    public GridObject GetGridObject(GridPosition girdPosition)
+    public GridObject GetGridObject(GridPosition gridPosition)
     {
-        return gridObjectArray[girdPosition.x, girdPosition.y];
+        if(gridPosition.x < 0 || gridPosition.y < 0 || gridPosition.x >= width || gridPosition.y >= height)
+        {
+            return OutOfGrid;
+        }
+
+        return gridObjectArray[gridPosition.x, gridPosition.y];
     }
 
     public int GetWidth()
