@@ -4,13 +4,35 @@ using UnityEngine;
 
 public class GridObject
 {
-    GridSystem gridSystem;
-    Vector2Int girdPos;
+    private GridSystem gridSystem;
+    private GridPosition gridPosition;
+    private Unit unit;
 
-    public GridObject(GridSystem gridSystem, Vector2Int girdPos)
+    public GridObject(GridSystem gridSystem, GridPosition girdPos)
     {
         this.gridSystem = gridSystem;
-        this.girdPos = girdPos;
+        this.gridPosition = girdPos;
     }
 
+    public override string ToString()
+    {
+        if(unit == null)
+        {
+            return gridPosition.ToString();
+        }
+        else
+        {
+            return gridPosition.ToString() + "\n" + unit;
+        }
+    }
+
+    public void SetUnit(Unit unit)
+    {
+        this.unit = unit;
+    }
+
+    public Unit GetUnit()
+    {
+        return this.unit;
+    }
 }

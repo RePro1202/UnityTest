@@ -23,7 +23,7 @@ public class GridSystem
         {
             for (int y = 0; y < height; y++)
             {
-                gridObjectArray[x, y] = new GridObject(this, new Vector2Int(x, y));
+                gridObjectArray[x, y] = new GridObject(this, new GridPosition(x, y));
             }
         }
     }
@@ -36,7 +36,7 @@ public class GridSystem
             {
                 Transform debugTransform = Transform.Instantiate(debugPrefab, GetWorldPosition(x, y), Quaternion.identity);
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
-                gridDebugObject.SetGridObject(GetGridObject(new Vector2Int(x, y)));
+                gridDebugObject.SetGridObject(GetGridObject(new GridPosition(x, y)));
             }
         }
     }
@@ -46,13 +46,23 @@ public class GridSystem
         return new Vector3(x, y, 0) * cellSize;
     }
 
-    public Vector2Int GetGridPosition(Vector3 worldPosition)
+    public GridPosition GetGridPosition(Vector3 worldPosition)
     {
-        return new Vector2Int(Mathf.RoundToInt(worldPosition.x / cellSize), Mathf.RoundToInt(worldPosition.y / cellSize));
+        return new GridPosition(Mathf.RoundToInt(worldPosition.x / cellSize), Mathf.RoundToInt(worldPosition.y / cellSize));
     }
 
-    public GridObject GetGridObject(Vector2Int girdPosition)
+    public GridObject GetGridObject(GridPosition girdPosition)
     {
         return gridObjectArray[girdPosition.x, girdPosition.y];
+    }
+
+    public int GetWidth()
+    {
+        return width;
+    }
+
+    public int GetHeight()
+    {
+        return height;
     }
 }
