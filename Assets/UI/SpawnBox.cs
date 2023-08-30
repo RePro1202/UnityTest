@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SpawnBox : MonoBehaviour,IPointerClickHandler, IEndDragHandler, IDragHandler
+public class SpawnBox : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        GetComponentInParent<PreViewPanel>().SpwanTetris();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+        
     }
 
    

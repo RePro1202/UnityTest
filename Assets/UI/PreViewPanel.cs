@@ -22,4 +22,9 @@ public class PreViewPanel : MonoBehaviour
 
         
     }
+
+    public void SpwanTetris()
+    {
+       
+    }
 }
