@@ -33,13 +33,54 @@ public class GridPosition : IEquatable<GridPosition>
         return $"x: {x}, y: {y}";
     }
 
-    public static bool operator ==(GridPosition a, GridPosition b) 
+    public static bool operator ==(GridPosition a, GridPosition b)
     {
-        return a.x == b.x && a.y == b.y ;
+        return a.x == b.x && a.y == b.y;
     }
 
     public static bool operator !=(GridPosition a, GridPosition b)
     {
         return !(a == b);
+    }
+
+    public static bool operator >(GridPosition a, GridPosition b)
+    {
+        return a.x > b.x && a.y > b.y;
+    }
+
+    public static bool operator <(GridPosition a, GridPosition b)
+    {
+        return a.x < b.x && a.y < b.y;
+    }
+
+    public static bool operator >=(GridPosition a, GridPosition b)
+    {
+        return a.x >= b.x && a.y >= b.y;
+    }
+
+    public static bool operator <=(GridPosition a, GridPosition b)
+    {
+        return a.x <= b.x && a.y <= b.y;
+    }
+
+    // GridPosition과 정수 직접비교
+    public static bool operator >(GridPosition a, (int x, int y) b)
+    {
+        return a.x > b.x && a.y > b.y;
+    }
+
+    public static bool operator <(GridPosition a, (int x, int y) b)
+    {
+        return a.x < b.x && a.y < b.y;
+    }
+
+    public static bool operator >=(GridPosition a, (int x, int y) b)
+    {
+        return a.x >= b.x && a.y >= b.y;
+    }
+
+    public static bool operator <=(GridPosition a, (int x, int y) b)
+    {
+        return a.x <= b.x && a.y <= b.y;
     }
 }

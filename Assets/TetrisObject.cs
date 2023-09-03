@@ -6,10 +6,12 @@ using UnityEngine;
 public class TetrisObject : MonoBehaviour
 {
     private bool isAttackedMouse;
+    private Unit[] units;
 
     private void Awake()
     {
         isAttackedMouse = false;
+        units = GetComponentsInChildren<Unit>();
     }
 
     private void Update()
@@ -20,6 +22,23 @@ public class TetrisObject : MonoBehaviour
     public void AttachMouse(bool toggle)
     {
         isAttackedMouse = toggle;
+
+        if (isAttackedMouse)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else
+        {
+            if(CheckAllUnitOnGrid())
+            {
+
+            }
+            else
+            {
+                transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                transform.localPosition = Vector3.zero;
+            }
+        }
     }
 
     private void FollowingMousePoint(bool isAttackedMouse)
@@ -28,8 +47,17 @@ public class TetrisObject : MonoBehaviour
 
         Vector2 currentPos = transform.position;
         Vector2 newPos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-        Vector2 velo = Vector2.zero;
 
-        transform.position = Vector2.SmoothDamp(currentPos, newPos, ref velo, 0.01f, 300f);
+        transform.position = newPos;
+    }
+
+    private bool CheckAllUnitOnGrid()
+    {
+        foreach (Unit unit in units)
+        {
+            if (!unit.GetOnGrid()) return false;
+        }
+
+        return true;
     }
 }

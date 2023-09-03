@@ -7,7 +7,7 @@ public class SpawnBox : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 {
     public void OnBeginDrag(PointerEventData eventData)
     {
-        GetComponentInParent<PreViewPanel>().SpwanTetris();
+        SpwanTetris();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -17,8 +17,11 @@ public class SpawnBox : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        GetComponentInChildren<TetrisObject>().AttachMouse(false);
     }
 
-   
+    private void SpwanTetris()
+    {
+        GetComponentInChildren<TetrisObject>().AttachMouse(true);
+    }
 }
