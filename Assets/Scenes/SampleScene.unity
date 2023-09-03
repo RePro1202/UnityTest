@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 152254954}
   - component: {fileID: 152254953}
   m_Layer: 5
-  m_Name: PreViewImage
+  m_Name: PreViewSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.69}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &152254953
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 1221305721}
   - component: {fileID: 1221305720}
   m_Layer: 5
-  m_Name: PreViewImage1
+  m_Name: PreViewSlot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.76}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221305720
@@ -596,16 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4839eb066023562489b0bf1f928b32f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previews:
-  - {fileID: 1368022818}
-  - {fileID: 152254952}
-  - {fileID: 1221305719}
-  - {fileID: 2103685657}
-  spawningPool:
-  - {fileID: 837848603661689503, guid: 6e96d98a3fc8faa49907902213a534cd, type: 3}
-  - {fileID: 837848603661689503, guid: 6e96d98a3fc8faa49907902213a534cd, type: 3}
-  - {fileID: 837848603661689503, guid: 9b06eb67dbec0a742919c600a00d7d73, type: 3}
-  - {fileID: 837848603661689503, guid: 8ae073e5a77da054d930ffcd067a4c01, type: 3}
+  previewSlots: []
+  spawningPrefabs: []
 --- !u!1 &1344167145
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +655,7 @@ GameObject:
   - component: {fileID: 1368022819}
   - component: {fileID: 1368022821}
   m_Layer: 5
-  m_Name: SpawnImage
+  m_Name: SpawnSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -686,7 +678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2.13}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368022819
@@ -942,7 +934,7 @@ GameObject:
   - component: {fileID: 2103685659}
   - component: {fileID: 2103685658}
   m_Layer: 5
-  m_Name: PreViewImage2
+  m_Name: PreViewSlot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -965,7 +957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.17}
+  m_AnchoredPosition: {x: 0, y: 2.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103685658

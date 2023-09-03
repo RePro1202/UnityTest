@@ -29,15 +29,24 @@ public class TetrisObject : MonoBehaviour
         }
         else
         {
-            if(CheckAllUnitOnGrid())
-            {
-                // TODO : 테트리스 타일을 맵에 정상 적용됬을때 처리.
-            }
-            else
-            {
-                transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-                transform.localPosition = Vector3.zero;
-            }
+            ReleseDrag();
+        }
+    }
+
+    private void ReleseDrag()
+    {
+        if (CheckAllUnitOnGrid())
+        {
+            Debug.Log("테트리스 배치 성공");
+
+
+
+            Destroy(gameObject);
+        }
+        else
+        {
+            transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            transform.localPosition = Vector3.zero;
         }
     }
 

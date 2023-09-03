@@ -5,17 +5,25 @@ using UnityEngine;
 
 public class PreViewPanel : MonoBehaviour
 {
-    [SerializeField]
-    private List<RectTransform> previews;
+    private PreViewSystem preViewSystem;
 
     [SerializeField]
-    private List<Transform> spawningPool;
+    private List<RectTransform> previewSlots;
+
+    [SerializeField]
+    private List<Transform> spawningPrefabs;
+
+    private void Awake()
+    {
+        preViewSystem = new PreViewSystem(previewSlots.Count);
+    }
+
 
     private void Start()
     {
-        foreach (RectTransform preview in previews)
+        foreach (RectTransform preview in previewSlots)
         {
-            Transform tetris = Instantiate(spawningPool[0], preview);
+            Transform tetris = Instantiate(spawningPrefabs[preViewSystem.GetRandomNum()], preview);
 
             tetris.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
