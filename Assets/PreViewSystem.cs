@@ -16,4 +16,6 @@ public class PreViewSystem
     {
         return Random.Range(0, slotNum);
     }
+
+
 }

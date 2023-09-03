@@ -15,10 +15,14 @@ public class LevelGrid : MonoBehaviour
 
     void Awake()
     {
-        if(Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
         {
-            Debug.Log("LevelGrid Instance already exist");
+            Debug.Log("LevelGrid already exist");
             Destroy(gameObject);
             return;
         }
