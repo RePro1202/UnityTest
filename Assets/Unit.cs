@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,42 +14,70 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        CheckOnGrid();
+        CheckEnterGrid();
     }
 
     private void Update()
     {
-        if(!onGrid)
-        {
-            CheckOnGrid();
-        }
-
         if(onGrid)
         {
-            GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
-            if (newGridPosition != gridPosition)
-            {
-                LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
-                gridPosition = newGridPosition;
-            }
+            CheckMoveGridPosition();
+        }
+        else
+        {
+            CheckEnterGrid();
+        }
+
+        onGrid = LevelGrid.Instance.CheckOnGrid(transform.position);
+    }
+
+
+    private void CheckMoveGridPosition()
+    {
+        GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+
+        if (newGridPosition != gridPosition)
+        {
+            MoveGridPosition(newGridPosition);
         }
     }
 
-
-    public bool GetOnGrid()
+    private void MoveGridPosition(GridPosition newGridPosition)
     {
-        return onGrid;
+        bool isMoveInGrid = LevelGrid.Instance.CheckOnGrid(newGridPosition);
+
+        if (isMoveInGrid)
+        {
+            MoveTo(newGridPosition);
+        }
+        else
+        {
+            ExitGrid();
+        }
     }
 
-    private void CheckOnGrid()
+    private void MoveTo(GridPosition newGridPosition)
+    {
+        LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+        gridPosition = newGridPosition;
+    }
+
+    private void ExitGrid()
+    {
+        LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
+    }
+
+    private void CheckEnterGrid()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
 
-        if (gridPosition >= (0, 0) && gridPosition <= (LevelGrid.Instance.GetWidth(), LevelGrid.Instance.GetHeight()))
-        {
+        if (LevelGrid.Instance.CheckOnGrid(gridPosition))
             LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
+    }
 
-            onGrid = true;
-        }
+    
+    public bool GetOnGrid()
+    {
+        return onGrid;
     }
 }

@@ -31,7 +31,7 @@ public class TetrisObject : MonoBehaviour
         {
             if(CheckAllUnitOnGrid())
             {
-
+                // TODO : 테트리스 타일을 맵에 정상 적용됬을때 처리.
             }
             else
             {

@@ -59,4 +59,11 @@ public class LevelGrid : MonoBehaviour
 
     public int GetHeight() => gridSystem.GetHeight();
 
+
+    public bool CheckOnGrid(GridPosition gridPosition) => gridSystem.CheckOnGrid(gridPosition);
+
+    public bool CheckOnGrid(Vector3 position) => gridSystem.CheckOnGrid(position);
+
+
+
 }

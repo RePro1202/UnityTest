@@ -18,7 +18,8 @@ public class GridSystem
     {
         this.width = width;
         this.height = height;
-        OutOfGrid = new GridObject(this, new GridPosition(-1, -1));
+
+        OutOfGrid = new GridObject(this, new GridPosition(-100, -100));
 
         gridObjectArray = new GridObject[width, height];
 
@@ -63,12 +64,16 @@ public class GridSystem
 
     public GridObject GetGridObject(GridPosition gridPosition)
     {
-        if(gridPosition.x < 0 || gridPosition.y < 0 || gridPosition.x >= width || gridPosition.y >= height)
+        if (CheckOnGrid(gridPosition))
         {
+            return gridObjectArray[gridPosition.x, gridPosition.y];
+        }
+        else
+        {
+            Debug.Log($"Out Of Grid  {gridPosition}");
             return OutOfGrid;
         }
-
-        return gridObjectArray[gridPosition.x, gridPosition.y];
+           
     }
 
     public int GetWidth()
@@ -79,6 +84,25 @@ public class GridSystem
     public int GetHeight()
     {
         return height;
+    }
+
+    public bool CheckOnGrid(GridPosition gridPosition)
+    {
+        if (gridPosition >= (0, 0) && gridPosition < (width, height))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CheckOnGrid(Vector3 position)
+    {
+        GridPosition gridPosition = GetGridPosition(position);
+
+        return CheckOnGrid(gridPosition);
     }
 
 }
