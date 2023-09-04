@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4839eb066023562489b0bf1f928b32f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previewSlots:
+  slots:
   - {fileID: 1368022818}
   - {fileID: 152254952}
   - {fileID: 1221305719}
