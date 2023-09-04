@@ -9,7 +9,7 @@ public class PreViewPanel : MonoBehaviour
     private PreViewSystem preViewSystem;
 
     [SerializeField]
-    private List<RectTransform> previewSlots;
+    private List<RectTransform> slots;
 
     [SerializeField]
     private List<Transform> spawningPrefabs;
@@ -18,16 +18,16 @@ public class PreViewPanel : MonoBehaviour
 
     private void Awake()
     {
-        preViewSystem = new PreViewSystem(previewSlots.Count);
+        preViewSystem = new PreViewSystem(slots.Count);
         tetrisList = new List<Transform>();
     }
 
 
     private void Start()
     {
-        foreach (RectTransform preview in previewSlots)
+        foreach (RectTransform slot in slots)
         {
-            Transform tetris = Instantiate(spawningPrefabs[preViewSystem.GetRandomNum()], preview);
+            Transform tetris = Instantiate(spawningPrefabs[preViewSystem.GetRandomNum()], slot);
             tetris.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
             tetrisList.Add(tetris);
@@ -38,6 +38,18 @@ public class PreViewPanel : MonoBehaviour
 
     private void ReplaceSlot(TetrisObject tetrisObject)
     {
-       
+        tetrisList.Remove(tetrisObject.transform);
+        tetrisList.Add(Instantiate(spawningPrefabs[preViewSystem.GetRandomNum()]));
+
+        int count = 0;
+
+        foreach(Transform tetris in tetrisList)
+        {
+            tetris.SetParent(slots[count]);
+            tetris.localPosition = Vector3.zero;
+            tetris.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+
+            count++;
+        }
     }
 }
